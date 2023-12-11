@@ -1,0 +1,36 @@
+.background{
+    display: flex;
+}
+.side{
+    padding: 8px;
+    margin: 10px;
+    border: 10px;
+    display: flex;
+    justify-content: space-around;
+   
+}
+.card{
+    border-radius: 2%;
+    padding: 4%;
+    border: 5%;
+    margin: 4%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: antiquewhite;
+}
+.card1{
+    border-radius: 4%;
+    padding: 0.8%;
+    border: 0.8%;
+    margin: 0.8%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: rgb(236, 221, 143);
+
+}
+h2{
+    display: flex;
+    justify-content: center;
+    color: rgb(128, 31, 54);
+
+}

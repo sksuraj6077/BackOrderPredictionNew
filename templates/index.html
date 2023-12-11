@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/mycss.css') }}" >
+</head>
+<body>
+  
+<div class="card">
+ <a href="https://github.com/sksuraj6077/Back_Order_Prediction"><h2 >Backorder Predication </h2></a> 
+
+  <div class = "card1">
+    <div class="side">
+    <a href="https://www.linkedin.com/in/suraj-kawathale-b965681a9/">   <img  style="border-radius: 50%;" src="{{ url_for('static', filename='images/suraj.JPG') }}" alt="" height="200PX" ></a>
+    <a href="https://www.linkedin.com/in/ankita-yetale-951a00201/">   <img  style="border-radius: 50%;" src="{{ url_for('static', filename='images/Anki.JPG') }}" alt="" height="200PX" ></a>
+
+    <a href="https://www.linkedin.com/in/aniket-patil-0b947418a/">   <img  style="border-radius: 50%;" src="{{ url_for('static', filename='images/Aniket.JPG') }}" alt="" height="200PX" ></a>
+
+    </div>
+  </div>
+  
+ 
+<form action="{{url_for('predict_datapoint')}}" method="POST">
+  <div class="side">
+  <div class="form-group">
+    <label for="exampleInputEmail1">national_inv </label>
+    <input type="number" name="national_inv" class="form-control" id="national_inv" aria-describedby="emailHelp" placeholder="Current inventory level of that sku">
+   
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">lead_time</label>
+    <input type="number" name="lead_time" class="form-control" id="lead_time" placeholder="Transit time for product(if available at source)">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1">in_transit_qty</label>
+    <input type="number" name="in_transit_qty" class="form-control" id="in_transit_qty" placeholder=" Quantity in transit from source">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">forecast_3_month</label>
+    <input type="number" name="forecast_3_month" class="form-control" id="forecast_3_month" placeholder="Forecast sales for the net 3 months">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">forecast_6_month</label>
+    <input type="number" name="forecast_6_month" class="form-control" id="forecast_6_month" placeholder="Forecast sales for the net 6 months">
+  </div>
+  </div>
+  <div class="side">
+  <div class="form-group">
+    <label for="exampleInputPassword1">forecast_9_month</label>
+    <input type="number" name="forecast_9_month" class="form-control" id="forecast_9_month" placeholder="Forecast sales for the 9 months">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">sales_1_month</label>
+    <input type="number" name="sales_1_month" class="form-control" id="sales_1_month" placeholder="Sales quantity for the prior 1 months">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">sales_3_month</label>
+    <input type="number" name="sales_3_month" class="form-control" id="sales_3_month" placeholder="Sales quantity for the prior 3 months">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">sales_6_month</label>
+    <input type="number" name="sales_6_month" class="form-control" id="sales_6_month" placeholder="Sales quantity for the prior 6 months">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">sales_9_month</label>
+    <input type="number" name="sales_9_month" class="form-control" id="sales_9_month" placeholder="Sales quantity for the prior 9 months">
+  </div>
+  </div>
+  <div class="side">
+  <div class="form-group">
+    <label for="exampleInputPassword1">min_bank</label>
+    <input type="number" name="min_bank" class="form-control" id="min_bank" placeholder="Minimum recommended amount to stock">
+  </div>
+  <div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">local_bo_qty</label>
+      <input type="number" name="local_bo_qty" class="form-control" id="local_bo_qty" placeholder="Amount of stock orders overdue">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">pieces_past_due</label>
+    <input type="number" class="form-control" id="pieces_past_due" placeholder="Parts overdue from source">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">perf_6_month_avg</label>
+    <input type="number" step="0.01" class="form-control" id="perf_6_month_avg" placeholder="Source performance in the last 6 months">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">perf_12_month_avg</label>
+    <input type="number" step="0.01" class="form-control" id="perf_12_month_avg" placeholder="Source performance in the last 12 months">
+  </div>
+</div>
+<div class="side">
+  <div>
+  <label for="cars">potential_issue :</label>
+    <select name="potential_issue" id="potential_issue">
+      <option value="Yes">Select</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+</div>
+  <div>
+    <label for="cars">deck_risk :</label>
+    <select name="deck_risk" id="deck_risk">
+      <option value="Yes">Select</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+  </div>
+  <div>
+    <label for="cars">oe_constraint :</label>
+    <select name="oe_constraint" id="oe_constraint">
+      <option value="Yes">Select</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+  </div>
+  <div>
+    <label for="cars">ppap_risk :</label>
+    <select name="ppap_risk" id="ppap_risk">
+      <option value="Yes">Select</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+  </div>
+  <div>
+    <label for="cars">stop_auto_buy :</label>
+    <select name="stop_auto_buy" id="stop_auto_buy">
+      <option value="Yes">Select</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+  </div>
+</div>
+<div class="side">
+  <div>
+    <label for="cars">rev_stop :</label>
+    <select name="rev_stop" id="rev_stop">
+      <option value="Yes">Select</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+  </div>
+</div>
+<div class="side">
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</form>
+</body>
+</html>
+</div>
+
+
+<!--
+       
+• national_inv - Current inventory level of that sku
+• lead_time - 
+• in_transit_qty -
+• forecast_x_month - 
+• sales_x_month - 
+• min_bank - 
+• potential_issue - Indictor variable noting potential issue with item
+• pieces_past_due - 
+• perf_x_months_avg - 
+• local_bo_qty - 
+• deck_risk – Part risk flag
+• oe_constraint – Part risk flag
+• ppap_risk – Part risk flag
+• stop_auto_buy – Part risk flag
+• rev_stop – Part risk flag
+//-->
+        
+       
+      
+       
+       
+      
+       
+      
+       
+    
