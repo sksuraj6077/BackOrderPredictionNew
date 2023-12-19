@@ -5,6 +5,9 @@ __pycache__/
 
 notebooks
 .notebooks
+Dockerfile
+.Dockerfile
+
 
 # C extensions
 *.so
