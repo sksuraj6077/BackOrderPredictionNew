@@ -135,21 +135,3 @@ Ankita yetale - [@ankiyetale7997@gmail.com] (ankiyetale7997@gmail.com)
 ## Acknowledgements
 
 We'd like to extend our gratitude to all individuals and organizations who have played a role in the development and success of this project. Your support, whether through contributions, inspiration, or encouragement, has been invaluable. Thank you for being a part of our journey.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-docker build --tag python-docker .
-docker images
-docker run -d -p 5000:5000 python-docker
-docker rmi -f python-docker 
